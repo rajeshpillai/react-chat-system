@@ -31,3 +31,8 @@
   width:150px;
   background:rgb(41, 221, 41);
 }
+
+.chat-window {
+  border: 1px solid lightgray;
+  min-height: 300px;
+}

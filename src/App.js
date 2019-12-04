@@ -4,14 +4,25 @@ import Login from './features/login';
 import Home from './features/home';
 import Logout from './features/logout';
 import io from 'socket.io-client';
+import Chat from './features/chat';
 
 
 const socket = io('localhost:7777');
+
+function getRandomUser() {
+  return `a${(+new Date()).toString().substr(8)}`;
+}
 
 function App() {
   const [isLoggedIn, setLogin] = useState(false);
   const [users, setUsers] = useState([]);
   const [username, setUser] = useState();
+  const [chatlist, setChatList] = useState([]);
+
+  // temporary
+  useEffect(() => {
+    onLogin(getRandomUser(), "xyz");
+  }, []);
 
   const onLogin = (username, password) => {
     let result = validate(username, password);
@@ -41,6 +52,11 @@ function App() {
     return true;
   }
 
+  const chat = (otherUser) => {
+    console.log(`chatting with `, otherUser);
+    setChatList([...chatlist, otherUser]);
+  }
+
   return (
     <div className="app">
       <div className="header">
@@ -50,15 +66,27 @@ function App() {
         </header>
         <div className="main">
           {!isLoggedIn && <Login onLogin={onLogin} />}
-          {isLoggedIn && <Home />}
+          {isLoggedIn && <Home username={username} />}
         </div>
       </div>
-      {isLoggedIn && <ul className="user-list">
-        {users && users.map((u) => {
-          return <li className="user-item">{u}</li>
-        })}
-      </ul>
+      {
+        isLoggedIn && <ul className="user-list">
+          {users && users.map((u) => {
+            return (
+              <li className="user-item">
+                {u} <button onClick={() => chat(u)}>chat</button>
+              </li>
+            )
+          })}
+        </ul>
       }
+
+      {chatlist.map((chat) => {
+        return (
+          <Chat user={chat} />
+        )
+      })}
+
     </div >
   );
 }
