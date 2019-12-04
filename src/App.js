@@ -76,6 +76,7 @@ function App() {
   }
 
   const talk = (message) => {
+    setConversations([...conversations, message])
     socket.emit("send_message", message);
   }
 
