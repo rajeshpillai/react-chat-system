@@ -72,7 +72,7 @@ function App() {
 
   const chat = (otherUser) => {
     setChatList([...chatlist, otherUser]);
-    socket.emit("start chat", otherUser)
+    socket.emit("start chat", { from: username, to: otherUser })
   }
 
   const talk = (message) => {
