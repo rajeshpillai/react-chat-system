@@ -42,21 +42,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CHAT APP</h1>
-        {isLoggedIn && <Logout onLogout={onLogout} />}
-      </header>
-      <div>
-        {!isLoggedIn && <Login onLogin={onLogin} />}
-        {isLoggedIn && <Home />}
+    <div className="app">
+      <div className="header">
+        <header className="app-header">
+          <h1>CHAT APP</h1>
+          {isLoggedIn && <Logout onLogout={onLogout} />}
+        </header>
+        <div className="main">
+          {!isLoggedIn && <Login onLogin={onLogin} />}
+          {isLoggedIn && <Home />}
+        </div>
       </div>
-      <div>
+      {isLoggedIn && <ul className="user-list">
         {users && users.map((u) => {
-          return <li>{u}</li>
+          return <li className="user-item">{u}</li>
         })}
-      </div>
-    </div>
+      </ul>
+      }
+    </div >
   );
 }
 

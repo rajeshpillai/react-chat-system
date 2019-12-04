@@ -1,12 +1,11 @@
-.App {
+.app {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
-.App-header {
+.app-header {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -19,4 +18,16 @@
 
 .App-link {
   color: #09d3ac;
+}
+.user-list {
+  width: 150px;
+  text-align: left;
+  background: yellow;
+}
+
+.user-item {
+  cursor: pointer;
+  padding: 5px;
+  width:150px;
+  background:rgb(41, 221, 41);
 }
