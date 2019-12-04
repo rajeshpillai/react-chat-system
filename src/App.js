@@ -6,11 +6,12 @@ import Logout from './features/logout';
 import io from 'socket.io-client';
 
 
+const socket = io('localhost:7777');
+
 function App() {
   const [isLoggedIn, setLogin] = useState(false);
   const [users, setUsers] = useState([]);
   const [username, setUser] = useState();
-  let socket = io('localhost:7777');
 
   const onLogin = (username, password) => {
     let result = validate(username, password);
@@ -23,10 +24,12 @@ function App() {
     return result;
   }
 
-  socket.on("get users", function (data) {
-    console.log('get users: ', data);
-    //setUsers(data);
-  });
+  useEffect(() => {
+    socket.on("get users", function (data) {
+      console.log('get users: ', data);
+      setUsers(data);
+    });
+  }, [users]);
 
   const onLogout = () => {
     setLogin(false);
