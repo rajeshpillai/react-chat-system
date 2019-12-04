@@ -18,6 +18,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [username, setUser] = useState();
   const [chatlist, setChatList] = useState([]);
+  const [conversations, setConversations] = useState([]);
 
   // temporary
   useEffect(() => {
@@ -37,10 +38,27 @@ function App() {
 
   useEffect(() => {
     socket.on("get users", function (data) {
-      console.log('get users: ', data);
+      //console.log('get users: ', data);
       setUsers(data);
     });
   }, [users]);
+
+  useEffect(() => {
+    socket.on("user joined", function (uname) {
+      console.log('chatting with: ', uname);
+      setChatList([...chatlist, uname]);
+    });
+  }, [chatlist]);
+
+  //todo
+  useEffect(() => {
+    socket.on("on-message-received", function (message) {
+      console.log("message received: ", message);
+      setConversations([...conversations, message])
+    });
+  }, []);
+
+
 
   const onLogout = () => {
     setLogin(false);
@@ -53,8 +71,12 @@ function App() {
   }
 
   const chat = (otherUser) => {
-    console.log(`chatting with `, otherUser);
     setChatList([...chatlist, otherUser]);
+    socket.emit("start chat", otherUser)
+  }
+
+  const talk = (message) => {
+    socket.emit("send_message", message);
   }
 
   return (
@@ -72,6 +94,7 @@ function App() {
       {
         isLoggedIn && <ul className="user-list">
           {users && users.map((u) => {
+            if (u == username) return;
             return (
               <li className="user-item">
                 {u} <button onClick={() => chat(u)}>chat</button>
@@ -81,9 +104,12 @@ function App() {
         </ul>
       }
 
-      {chatlist.map((chat) => {
+      {chatlist.map((otherUser) => {
         return (
-          <Chat user={chat} />
+          <Chat from={username}
+            to={otherUser}
+            defaultMessages={conversations}
+            onTalk={talk} />
         )
       })}
 
