@@ -76,7 +76,7 @@ function App() {
   }
 
   const talk = (message) => {
-    setConversations([ message])
+    setConversations([message])
     socket.emit("send_message", message);
   }
 
@@ -106,10 +106,12 @@ function App() {
       }
 
       {chatlist.map((otherUser) => {
+        console.log('talkedTo:', otherUser);
+        let talks = conversations.filter(t => t.to == otherUser || t.from == otherUser)
         return (
           <Chat from={username}
             to={otherUser}
-            defaultMessages={conversations}
+            defaultMessages={talks}
             onTalk={talk} />
         )
       })}
