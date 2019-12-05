@@ -29,22 +29,22 @@ function App() {
     let result = validate(username, password);
     if (result) {
       setUser(username);
-      socket.emit("new user", username, function (data) {
-        console.log('new user: ', data);
+      socket.emit("on_new_user_joined", username, function (data) {
+        console.log('on_new_user_joined: ', data);
       });
     }
     return result;
   }
 
   useEffect(() => {
-    socket.on("get users", function (data) {
+    socket.on("on_get_users", function (data) {
       //console.log('get users: ', data);
       setUsers(data);
     });
   }, [users]);
 
   useEffect(() => {
-    socket.on("user joined", function (uname) {
+    socket.on("user_has_joined", function (uname) {
       console.log('chatting with: ', uname);
       setChatList([...chatlist, uname]);
     });
@@ -52,7 +52,7 @@ function App() {
 
   //todo
   useEffect(() => {
-    socket.on("on-message-received", function (message) {
+    socket.on("on_message_received", function (message) {
       console.log("message received: ", message);
       setConversations([...conversations, message]);
     });
@@ -72,7 +72,7 @@ function App() {
 
   const chat = (otherUser) => {
     setChatList([...chatlist, otherUser]);
-    socket.emit("start chat", { from: username, to: otherUser })
+    socket.emit("chat_window_open", { from: username, to: otherUser })
   }
 
   const talk = (message) => {
