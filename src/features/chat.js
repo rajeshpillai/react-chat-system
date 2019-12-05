@@ -10,27 +10,35 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
   }, [defaultMessages]);
 
 
-  const talk = () => {
+  const talk = (e) => {
     //setMessages([...messages, message]);
     onTalk({ from, to, message: message });
+    e.target.value = '';
   }
 
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
 
+  const onKeyUp = (e) => {
+    if (e.ctrlKey && e.which === 13) {
+      talk(e);
+    }
+  }
+
+
   return (
     <div className="chat-window">
       <h2>Chat Window {from}->{to}</h2>
-      <ul className="messages">
+      <ul className="message-list">
         {messages.map((m, i) => {
           return (
-            <li key={i}><span>{m.from}</span><span>
+            <li className="message-item" key={i}><span>{m.from}</span><span>
               {m.message}</span></li>
           );
         })}
       </ul>
-      <textarea onChange={handleChange}></textarea>
+      <textarea onChange={handleChange} onKeyUp={onKeyUp}></textarea>
       <button onClick={talk}>send</button>
     </div>
   )

@@ -36,3 +36,11 @@
   border: 1px solid lightgray;
   min-height: 300px;
 }
+
+.message-list {
+  text-align: left;
+}
+
+.message-item {
+ text-align: left;
+}

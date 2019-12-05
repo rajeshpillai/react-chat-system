@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Home({username}) {
+export default function Home({ username }) {
   return (
     <div>
-      Welcome ${username} !
+      Welcome {username} !
     </div>
   )
 }

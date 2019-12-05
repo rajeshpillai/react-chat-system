@@ -54,7 +54,7 @@ function App() {
   useEffect(() => {
     socket.on("on-message-received", function (message) {
       console.log("message received: ", message);
-      setConversations([...conversations, message])
+      setConversations([...conversations, message]);
     });
   }, []);
 
@@ -76,7 +76,7 @@ function App() {
   }
 
   const talk = (message) => {
-    setConversations([...conversations, message])
+    setConversations([ message])
     socket.emit("send_message", message);
   }
 
