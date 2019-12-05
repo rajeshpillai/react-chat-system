@@ -16,9 +16,11 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.content {
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .user-list {
   width: 150px;
   text-align: left;
@@ -30,6 +32,11 @@
   padding: 5px;
   width:150px;
   background:rgb(41, 221, 41);
+}
+
+.chat-area {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .chat-window {

@@ -5,6 +5,7 @@ import Home from './features/home';
 import Logout from './features/logout';
 import io from 'socket.io-client';
 import Chat from './features/chat';
+import UserList from './features/user-list';
 
 
 const socket = io('localhost:7777');
@@ -92,29 +93,27 @@ function App() {
           {isLoggedIn && <Home username={username} />}
         </div>
       </div>
-      {
-        isLoggedIn && <ul className="user-list">
-          {users && users.map((u) => {
-            if (u == username) return;
+
+      <div className="content">
+        <UserList isLoggedIn={isLoggedIn}
+          currentUser={username}
+          users={users}
+          onChat={chat}
+        />
+
+        <div className="chat-area">
+          {chatlist.map((otherUser) => {
+            console.log('talkedTo:', otherUser);
+            let talks = conversations.filter(t => t.to == otherUser || t.from == otherUser)
             return (
-              <li className="user-item">
-                {u} <button onClick={() => chat(u)}>chat</button>
-              </li>
+              <Chat from={username}
+                to={otherUser}
+                defaultMessages={talks}
+                onTalk={talk} />
             )
           })}
-        </ul>
-      }
-
-      {chatlist.map((otherUser) => {
-        console.log('talkedTo:', otherUser);
-        let talks = conversations.filter(t => t.to == otherUser || t.from == otherUser)
-        return (
-          <Chat from={username}
-            to={otherUser}
-            defaultMessages={talks}
-            onTalk={talk} />
-        )
-      })}
+        </div>
+      </div>
 
     </div >
   );
