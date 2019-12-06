@@ -87,11 +87,13 @@
 .message-item.others {
   background-color: white;
   align-self: flex-start;
+  border-color: rgb(91, 226, 91);
 }
 
 .message-item.self {
   background-color: white;
   align-self: flex-end;
+  border-color: beige;
 }
 
 .message-from {
