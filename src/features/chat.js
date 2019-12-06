@@ -38,8 +38,10 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
           );
         })}
       </ul>
-      <textarea onChange={handleChange} onKeyUp={onKeyUp}></textarea>
-      <button onClick={talk}>send</button>
+      <div className="chat-input-area">
+        <textarea onChange={handleChange} onKeyUp={onKeyUp}></textarea>
+        <button onClick={talk}>send</button>
+      </div>
     </div>
   )
 }
