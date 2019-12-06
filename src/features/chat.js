@@ -9,7 +9,7 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
   useEffect(() => {
     console.log("defaultMessages: ", defaultMessages);
     setMessages([...messages, ...defaultMessages]);
-    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight+40;
   }, [defaultMessages]);
 
 
@@ -18,7 +18,7 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
     onTalk({ from, to, message: message });
     e.target.value = '';
     console.log('scroll:', chatBodyRef.current.scrollHeight);
-    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight+40;
   }
 
   const handleChange = (e) => {
