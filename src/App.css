@@ -38,7 +38,7 @@
   justify-content: space-between
 }
 
-.action-send-message {
+.action-open-chat {
   text-transform: lowercase;
 }
 

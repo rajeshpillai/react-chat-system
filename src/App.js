@@ -72,6 +72,11 @@ function App() {
   }
 
   const chat = (otherUser) => {
+    // Check if chat window already open
+    let w = chatlist.find((w) => w == otherUser);
+    console.log('chatwindow: ', w);
+    if (w !== undefined) return;
+
     setChatList([...chatlist, otherUser]);
     socket.emit("chat_window_open", { from: username, to: otherUser })
   }
