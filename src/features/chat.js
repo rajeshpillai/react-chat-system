@@ -21,7 +21,10 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
   }
 
   const onKeyUp = (e) => {
-    if (e.ctrlKey && e.which === 13) {
+    if ((e.ctrlKey || e.shiftKey) && e.which === 13) {
+      return;
+    }
+    if (e.which === 13) {
       talk(e);
     }
   }

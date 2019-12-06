@@ -85,12 +85,12 @@
 }
 
 .message-item.others {
-  background-color: rgb(83, 201, 150);
+  background-color: white;
   align-self: flex-start;
 }
 
 .message-item.self {
-  background-color: rgb(129, 156, 238);
+  background-color: white;
   align-self: flex-end;
 }
 
