@@ -84,12 +84,12 @@
  min-width: 8em;
 }
 
-.message-item.left {
+.message-item.others {
   background-color: rgb(83, 201, 150);
   align-self: flex-start;
 }
 
-.message-item.right {
+.message-item.self {
   background-color: rgb(129, 156, 238);
   align-self: flex-end;
 }

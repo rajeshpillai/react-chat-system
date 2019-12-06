@@ -32,7 +32,7 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
       <h2>Chat Window {from}->{to}</h2>
       <ul className="message-list">
         {messages.map((m, i) => {
-          let cn = m.from == from ? "right" : "left";
+          let cn = m.from == from ? "self" : "others";
           return (
             <li className={`message-item ${cn}`} key={i}>
               <span className="message-from">{m.from}</span>
