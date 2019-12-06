@@ -45,7 +45,7 @@
 .chat-area {
   display: flex;
   flex-wrap: wrap;
-  flex:3;
+  flex:6;
 }
 
 .chat-window {
@@ -70,8 +70,34 @@
 
 .message-list {
   text-align: left;
+  list-style-type: none;
 }
 
 .message-item {
  text-align: left;
+ border: 1px solid palevioletred;
+ padding: 5px;
+ border-radius: 4px;
+ margin: 5px;
+}
+
+.message-item.left {
+  background-color: rgb(83, 201, 150);
+}
+
+.message-item.right {
+  background-color: rgb(129, 156, 238);
+}
+
+.message-from {
+  padding: 0;
+  margin:0;
+  display: inline-block;
+  font-size: 0.7em;
+}
+
+
+
+.message-body{
+  
 }
