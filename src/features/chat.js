@@ -9,6 +9,7 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
   useEffect(() => {
     console.log("defaultMessages: ", defaultMessages);
     setMessages([...messages, ...defaultMessages]);
+    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
   }, [defaultMessages]);
 
 
