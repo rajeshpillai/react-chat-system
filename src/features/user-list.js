@@ -6,7 +6,7 @@ export default function UserList({ currentUser, users, isLoggedIn, onChat }) {
       {users && users.map((u) => {
         if (u == currentUser) return;
         return (
-          <li className="user-item">
+          <li className="user-item" key={u}>
             {u} <button className="action-open-chat" onClick={() => onChat(u)}>chat</button>
           </li>
         )

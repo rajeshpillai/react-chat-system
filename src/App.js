@@ -73,7 +73,7 @@ function App() {
 
   const chat = (otherUser) => {
     // Check if chat window already open
-    let w = chatlist.find((w) => w == otherUser);
+    let w = chatlist.find((w) => w === otherUser);
     console.log('chatwindow: ', w);
     if (w !== undefined) return;
 
@@ -107,11 +107,13 @@ function App() {
         />
 
         <div className="chat-area">
-          {chatlist.map((otherUser) => {
+          {chatlist.map((otherUser, index) => {
             console.log('talkedTo:', otherUser);
-            let talks = conversations.filter(t => t.to == otherUser || t.from == otherUser)
+            let talks = conversations.filter(t => t.to === otherUser || t.from === otherUser)
             return (
-              <Chat from={username}
+              <Chat
+                key={index}
+                from={username}
                 to={otherUser}
                 defaultMessages={talks}
                 onTalk={talk} />

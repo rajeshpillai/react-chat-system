@@ -6,13 +6,13 @@
 
 
 .app-header {
-  background-color: #282c34;
-  min-height: 5vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 10vh;
+  background-color: #282c34;
   align-items: center;
   justify-content: center;
-  font-size: calc(3px + 2vmin);
+  font-size: calc(2px + 2vmin);
   color: white;
 }
 
@@ -75,7 +75,7 @@
   text-align: left;
   list-style-type: none;
   overflow: auto;
-  height: 80vh;
+  height: 50vh;
 }
 
 .message-item {
