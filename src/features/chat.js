@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Chat({ from, to, defaultMessages, onTalk }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
+
+  const chatBodyRef = React.createRef();
 
   useEffect(() => {
     console.log("defaultMessages: ", defaultMessages);
@@ -14,6 +16,8 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
     //setMessages([...messages, message]);
     onTalk({ from, to, message: message });
     e.target.value = '';
+    console.log('scroll:', chatBodyRef.current.scrollHeight);
+    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
   }
 
   const handleChange = (e) => {
@@ -33,7 +37,7 @@ export default function Chat({ from, to, defaultMessages, onTalk }) {
   return (
     <div className="chat-window">
       <h2>Chat Window {from}->{to}</h2>
-      <ul className="message-list">
+      <ul className="message-list" ref={chatBodyRef}>
         {messages.map((m, i) => {
           let cn = m.from == from ? "self" : "others";
           return (

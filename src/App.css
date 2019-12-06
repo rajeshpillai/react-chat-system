@@ -60,6 +60,8 @@
 .chat-input-area {
   align-self: flex-end;
   width: 100%;
+  /* position: fixed; */
+  /* bottom:0; */
 }
 
 .chat-input-area textarea {
@@ -72,6 +74,8 @@
   flex-direction: column;
   text-align: left;
   list-style-type: none;
+  overflow: auto;
+  height: 80vh;
 }
 
 .message-item {
