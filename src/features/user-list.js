@@ -7,7 +7,7 @@ export default function UserList({ currentUser, users, isLoggedIn, onChat }) {
         if (u == currentUser) return;
         return (
           <li className="user-item">
-            {u} <button onClick={() => onChat(u)}>chat</button>
+            {u} <button className="action-send-message" onClick={() => onChat(u)}>chat</button>
           </li>
         )
       })
